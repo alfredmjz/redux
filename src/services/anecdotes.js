@@ -13,5 +13,11 @@ const createNew = async (content) => {
 	return response.data;
 };
 
-const toExport = { getAll, createNew };
+const update = async (updateObj) => {
+	const url = baseUrl + `/${updateObj.id}`;
+	const response = await axios.put(url, updateObj);
+	return response.data;
+};
+
+const toExport = { getAll, createNew, update };
 export default toExport;
