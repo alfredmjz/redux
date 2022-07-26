@@ -1,28 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
-import { removeMessage } from "../reducers/notificationReducer";
+import { useSelector } from "react-redux";
 
 const Notification = () => {
-	const message = useSelector((state) => {
-		if (state.notification[0] === "Voted") {
-			return "You voted for " + state.notification[1];
-		} else if (state.notification[0] === "Created") {
-			return "You created " + state.notification[1];
-		}
-		return "";
-	});
-	const dispatch = useDispatch();
+	const message = useSelector((state) => state.notification);
 	const style = {
 		border: "solid",
 		padding: 10,
 		borderWidth: 1,
+		marginBottom: 5,
 	};
-
-	const timer = setInterval(() => {
-		dispatch(removeMessage());
-	}, 5000);
-
-	if (message !== "") {
-		clearInterval(timer);
+	if (message.length) {
 		return <div style={style}>{message}</div>;
 	}
 };
